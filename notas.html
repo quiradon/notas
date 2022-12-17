@@ -1,53 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calcular media ceep jf</title>
-    <style>
-       body{
-        background-color: rgb(103, 156, 255);
-        font: normal 20pt Arial
-       }
-    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Notas CEEPJF</title>
+    <meta name="description" content="Quir Page">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="assets/css/Footer-Basic-icons.css">
 </head>
+
 <body>
-    <script>
-        var m1 = Number.parseFloat(window.prompt(`qual foi sua media no 1° bimestre?`))
-        var m2 = Number.parseFloat(window.prompt(`qual foi sua media no 2° bimestre?`))
-        var m3 = Number.parseFloat(window.prompt(`qual foi sua media no 3° bimestre?`))
-        var m4 = Number.parseFloat(window.prompt(`qual foi sua media no 4° bimestre?`))
-        
-         if (m3 == 0){    
-            var na3 = Number.parseFloat(window.prompt(`quanto você tirou em atividade no 3° bimestre?`))
-            var np3 = Number.parseFloat(window.prompt(`quanto você tirou na prova do 3° bimestre?`))
-            var ne3 = Number.parseFloat(window.prompt(`quanto você tirou em eletiva no 3° bimestre?`))
-
-            m3 = (na3 + np3 + ne3) / 3
-         } 
-        
-         if (m4 == 0){
-            var na4 = Number.parseFloat(window.prompt(`quanto você tirou em atividade no 4° bimestre?`))
-            var np4 = Number.parseFloat(window.prompt(`quanto você tirou na prova do 4° bimestre?`))
-            var ne4 = Number.parseFloat(window.prompt(`quanto você tirou em eletiva no 4° bimestre?`))
-            var ns =  Number.parseFloat(window.prompt(`quanto você tirou no simulado do 4° bimestre?`))
-
-            m4 = (na4 + np4 + ne4 + ns) / 4
-         }
-
-        var ma = (m1 + m2 + m3 + m4) / 4
-        ma.toFixed(2)
-        
-        if (ma >= 6){
-            document.write(`Parabéns! você passou com ${ma}`)
-        } 
-            else{
-                var rec =  15 - ma * 2
-                rec.toFixed(2)
-                document.write(`infelizmente você não passou, você precisa tirar ${rec} na recuperação`)
-            }
-    
-    </script>
+    <section class="position-relative py-4 py-xl-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4" style="border-style: none;">
+                <div class="card mb-5" style="border-style: none;">
+                    <div class="card-body p-sm-5" style="background: var(--dark);border-style: none;border-color: rgb(255,36,36);margin-left: -10%;margin-right: -10%;border-radius: 56px;box-shadow: 0px 0px 14px rgb(0,0,0);margin-bottom: 20px;">
+                        <h1 class="display-6 text-center text-primary">Calculador de Nota</h1>
+                        <form method="post" style="padding-right: 0px;margin-right: 0px;">
+                            <div class="mb-3"><input class="form-control" type="number" id="n1" style="background: var(--bs-dark);margin-bottom: 15px;border-style: none;color: var(--bs-card-bg);" step="any" placeholder="Nota 1° Bimestre" name="n1"></div>
+                            <div class="mb-3"><input class="form-control" type="number" id="n2" style="background: var(--bs-dark);margin-bottom: 15px;border-style: none;color: var(--bs-card-bg);" step="any" placeholder="Nota 2° Bimestre" name="n2"></div>
+                            <div class="mb-3"><input class="form-control" type="number" id="n3" style="background: var(--bs-dark);margin-bottom: 15px;border-style: none;color: var(--bs-card-bg);" step="any" placeholder="Nota 3° Bimestre" name="n3"><input class="form-control" type="number" id="n4" style="background: var(--bs-dark);margin-bottom: 15px;border-style: none;color: var(--bs-card-bg);" step="any" placeholder="Nota 4° Bimestre" name="n4"></div>
+                            <div><button class="btn btn-primary d-block w-100" id="confirm" type="button" style="margin-bottom: 24px;">Calcular</button></div>
+                        </form>
+                    </div>
+                    <div class="card-body p-sm-5" style="background: var(--dark);border-style: none;border-color: rgb(255,36,36);margin-left: -10%;margin-right: -10%;border-radius: 56px;box-shadow: 0px 0px 14px rgb(0,0,0);margin-bottom: 20px;">
+                        <h1 class="display-6 text-center text-primary">Resultado:</h1>
+                        <h2 class="display-6 text-center text-primary" id="result1">...</h2>
+                        <h2 class="display-6 text-center text-primary" id="result2">...</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bold-and-dark.js"></script>
 </body>
+
 </html>
+
+<script>
+    //quando  o botão for apertado
+
+    document.getElementById("confirm").onclick = function() {
+        //pegar os valores dos inputs
+        var n1 = document.getElementById("n1").value;
+        var n2 = document.getElementById("n2").value;
+        var n3 = document.getElementById("n3").value;
+        var n4 = document.getElementById("n4").value;
+        //calcular a média
+        var media = (parseFloat(n1) + parseFloat(n2) + parseFloat(n3) + parseFloat(n4)) / 4;
+        //mostrar a média
+       
+        //calcular a nota necessária
+        if (media > 6) {
+            document.getElementById("result1").innerHTML = "Parábens! Você já está aprovado!";
+            document.getElementById("result2").innerHTML = "Média: " + media;
+        } else if (media < 6) {
+            var rec = 15 - (media * 2);
+
+            //caso rec for maior que 10 você está reprovado 
+
+            if (rec > 10) {
+                document.getElementById("result1").innerHTML = "Você está reprovado!";
+                document.getElementById("result2").innerHTML = "Média: " + media;
+            } else {
+                document.getElementById("result1").innerHTML = "Você precisa de " + rec + " para ser aprovado!";
+                document.getElementById("result2").innerHTML = "Média: " + media;
+            }
+        }
+    }
+
+
+
+
+</script>
